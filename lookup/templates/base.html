@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather App</title>
+    <style>
+        .good{background-color: #0C0;}
+        .moderate{background-color: #FFFF00;}
+        .usg{background-color: #FF9900;}
+        .unhealthy{background-color: #FF0000;}
+        .veryunhealthy{background-color: #990066;}
+        .hazardous{background-color: #660000;}
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
@@ -23,9 +31,10 @@
                 <a class="nav-link" href="{% url 'about' %}">About</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
+            <form action="{% url 'home' %}" class="d-flex" role="search" method="POST">
+                {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Enter ZIP Code" aria-label="Search" name="zipcode">
+              <button class="btn btn-outline-secondary" type="submit">Lookup</button>
             </form>
           </div>
         </div>
